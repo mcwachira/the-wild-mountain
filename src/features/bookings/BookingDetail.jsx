@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
-import BookingDataBox from "./BookingDataBox.jsx";
+import BookingDataBox from "./BookingDataBox.tsx";
 import Row from "../../ui/Row";
 import Heading from "../../ui/Heading";
-import Tag from "../../ui/Tag.jsx";
-import ButtonGroup from "../../ui/ButtonGroup.jsx";
-import Button from "../../ui/Button.jsx";
-import ButtonText from "../../ui/ButtonText.jsx";
+import Tag from "../../ui/Tag.tsx";
+import ButtonGroup from "../../ui/ButtonGroup.tsx";
+import Button from "../../ui/Button.tsx";
+import ButtonText from "../../ui/ButtonText.tsx";
 
 import { useMoveBack } from "../../hooks/useMoveBack.js";
 

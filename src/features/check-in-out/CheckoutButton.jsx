@@ -1,4 +1,4 @@
-import Button from "../../ui/Button.jsx";
+import Button from "../../ui/Button.tsx";
 
 function CheckoutButton({ bookingId }) {
   return (

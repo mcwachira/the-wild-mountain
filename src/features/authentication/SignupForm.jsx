@@ -1,5 +1,5 @@
-import Button from "../../ui/Button.jsx";
-import Form from "../../ui/Form.jsx";
+import Button from "../../ui/Button.tsx";
+import Form from "../../ui/Form.tsx";
 import FormRow from "../../ui/FormRow";
 import Input from "../../ui/Input";
 

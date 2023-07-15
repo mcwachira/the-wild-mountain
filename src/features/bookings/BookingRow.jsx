@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { format, isToday } from "date-fns";
 
-import Tag from "../../ui/Tag.jsx";
-import Table from "../../ui/Table.jsx";
+import Tag from "../../ui/Tag.tsx";
+import Table from "../../ui/Table.tsx";
 
 import { formatCurrency } from "../../utils/helpers.js";
 import { formatDistanceFromNow } from "../../utils/helpers.js";

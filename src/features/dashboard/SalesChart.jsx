@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import DashboardBox from "./DashboardBox.jsx";
+import DashboardBox from "./DashboardBox.tsx";
 
 const StyledSalesChart = styled(DashboardBox)`
   grid-column: 1 / -1;
