@@ -8,7 +8,7 @@ import ButtonGroup from "../../ui/ButtonGroup.tsx";
 import Button from "../../ui/Button.tsx";
 import ButtonText from "../../ui/ButtonText.tsx";
 
-import { useMoveBack } from "../../hooks/useMoveBack.js";
+import { useMoveBack } from "../../hooks/useMoveBack.ts";
 
 const HeadingGroup = styled.div`
   display: flex;

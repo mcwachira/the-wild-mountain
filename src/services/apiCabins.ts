@@ -1,7 +1,7 @@
 import {supabase} from './supabase'
 
 const getCabins = async() => {
-    const {data, error} = supabase.from('cabins').select('*')
+    const {data, error} = await supabase.from('cabins').select('*')
 
     if(error){
         console.log(error);

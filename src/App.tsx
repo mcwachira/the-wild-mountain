@@ -1,4 +1,11 @@
 import styled from "styled-components";
+import {
+    useQuery,
+    useMutation,
+    useQueryClient,
+    QueryClient,
+    QueryClientProvider,
+} from '@tanstack/react-query'
 import {Navigate, Route, Routes} from "react-router-dom";
 import Dashboard from './pages/Dashboard'
 import Bookings from './pages/Bookings'
@@ -10,6 +17,9 @@ import Users from './pages/Users'
 import Account from "./pages/Account.tsx";
 import GlobalStyles from "./styles/GlobalStyles.ts";
 import AppLayout from "./ui/AppLayout.tsx";
+
+
+
 
 
 function App() {
