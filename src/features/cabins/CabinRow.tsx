@@ -4,6 +4,7 @@ import Button from "../../ui/Button.tsx";
 import {useMutation, useQueryClient} from "@tanstack/react-query";
 import {deleteCabins} from "../../services/apiCabins.ts";
 import Spinner from "../../ui/Spinner.tsx";
+import toast from "react-hot-toast";
 
 const TableRow = styled.div`
   display: grid;
@@ -58,12 +59,14 @@ const CabinRow = ({cabin}) => {
         mutationFn: (id) => deleteCabins(id),
         onSuccess:() => {
 
+            toast.success('cabin successfully deleted');
             //This will cause data to be refetched after performing a mutation
             queryClient.invalidateQueries({
                 queryKey:['cabin'],
             })
 
-        }
+        },
+        onError:(err) => toast.error(err.message)
     })
 
 
