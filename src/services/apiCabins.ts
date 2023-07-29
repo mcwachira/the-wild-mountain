@@ -1,6 +1,6 @@
 import {supabase} from './supabase'
 
-const getCabins = async() => {
+export const getCabins = async() => {
     const {data, error} = await supabase.from('cabins').select('*')
 
     if(error){
@@ -13,4 +13,18 @@ const getCabins = async() => {
     return data;
 }
 
-export default getCabins
+
+
+
+export const deleteCabins = async(id) => {
+
+    const {data, error} = await supabase.from('cabins').delete().eq('id', id);
+    if(error){
+        console.log(error);
+        throw new Error('Cabins could not be deleted');
+
+    }
+
+    return data
+
+}

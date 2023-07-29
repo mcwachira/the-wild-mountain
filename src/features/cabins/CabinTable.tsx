@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import {useQuery} from "@tanstack/react-query";
-import getCabins from "../../services/apiCabins.ts";
+import {getCabins}from "../../services/apiCabins.ts";
 import Spinner from "../../ui/Spinner.tsx";
 import CabinRow from "./CabinRow.tsx";
-import {ca} from "date-fns/locale";
+
 
 const Table = styled.div`
   border: 1px solid var(--color-grey-200);
