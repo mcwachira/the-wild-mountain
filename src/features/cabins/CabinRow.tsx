@@ -3,7 +3,6 @@ import {formatCurrency} from "../../utils/helpers.js";
 import Button from "../../ui/Button.tsx";
 import {useMutation, useQueryClient} from "@tanstack/react-query";
 import {deleteCabins} from "../../services/apiCabins.ts";
-import Spinner from "../../ui/Spinner.tsx";
 import toast from "react-hot-toast";
 
 const TableRow = styled.div`
