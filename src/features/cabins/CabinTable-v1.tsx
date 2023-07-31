@@ -32,9 +32,10 @@ const TableHeader = styled.header`
 
 const CabinTable = () => {
 
-
-    const {isLoading, cabins} =useCabins()
-
+   const {isLoading, data:cabins, error} =  useQuery({
+        queryKey:['cabin'],
+        queryFn:getCabins
+    })
 
     if(isLoading) return <Spinner/>
 

@@ -10,16 +10,21 @@ import {useMutation, useQueryClient} from "@tanstack/react-query";
 import {createEditCabin} from "../../services/apiCabins.ts";
 import toast from "react-hot-toast";
 import FormRow from "../../ui/FormRow.tsx";
+import {useEditCabin} from "./useEditCabin.ts";
+import {useCreateCabin} from "./useCreateCabin.ts";
 
 
 function CreateCabinForm({cabinToEdit}) {
 
 
+    const {        isCreating, createCabin} = useCreateCabin()
+
+    const {       isEditing, editCabin} = useEditCabin()
 
     const {id:editId, ...editValues} = cabinToEdit;
 
     const isEditSession = Boolean(editId)
-    const queryClient = useQueryClient();
+    // const queryClient = useQueryClient();
 
 
     const {register, handleSubmit, reset,getValues,formState} = useForm({
@@ -29,36 +34,9 @@ function CreateCabinForm({cabinToEdit}) {
 
     const {errors} = formState;
 
-    const {mutate:createCabin, isLoading:isCreating} = useMutation({
-        mutationFn:createEditCabin,
-        onSuccess:() => {
-            toast.success('New cabin succesfully created');
-            //This will cause data to be refetched after performing a mutation
-            queryClient.invalidateQueries({
-                queryKey:['cabin'],
-            })
-
-            reset()
-        },
-        onError:(err) => toast.error(err.message)
-    })
 
 
-    const {mutate:editCabin, isLoading:isEditting} = useMutation({
-        mutationFn:({newCabinData, id}) => createEditCabin(newCabinData, id),
-        onSuccess:() => {
-            toast.success('New cabin succesfully created');
-            //This will cause data to be refetched after performing a mutation
-            queryClient.invalidateQueries({
-                queryKey:['cabin'],
-            })
-
-            reset()
-        },
-        onError:(err) => toast.error(err.message)
-    })
-
-    const isWorking = isCreating || isEditting
+    const isWorking = isCreating || isEditing
 
     const onSubmit = (data) => {
         console.log(data)
@@ -67,9 +45,18 @@ function CreateCabinForm({cabinToEdit}) {
 
 
         if(isEditSession) {
-            editCabin({newCabinData: {...data, image}, id: editId})
+            editCabin({newCabinData: {...data, image}, id: editId},  {
+                onSuccess:(data) => {
+                    reset()
+                }
+            })
         }else {
-            createCabin({...data,image: image})
+            createCabin({...data,image: image}, {
+                onSuccess:(data) => {
+                    reset()
+                }
+            })
+
         }
 
 
