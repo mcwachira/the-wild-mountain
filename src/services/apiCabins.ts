@@ -15,6 +15,24 @@ export const getCabins = async() => {
 
 
 
+export const createCabin = async(newCabin) => {
+
+
+    const { data, error } = await supabase
+        .from('cabins')
+        .insert([newCabin])
+
+
+    if(error){
+        console.log(error);
+        throw new Error('Cabins could not be deleted');
+
+    }
+
+    return data
+
+}
+
 
 export const deleteCabins = async(id) => {
 
