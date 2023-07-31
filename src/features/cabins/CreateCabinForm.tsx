@@ -7,7 +7,7 @@ import FileInput from "../../ui/FileInput.tsx";
 import Textarea from "../../ui/Textarea.tsx";
 import {useForm} from "react-hook-form";
 import {useMutation, useQueryClient} from "@tanstack/react-query";
-import {createCabin} from "../../services/apiCabins.ts";
+import {createEditCabin} from "../../services/apiCabins.ts";
 import toast from "react-hot-toast";
 import FormRow from "../../ui/FormRow.tsx";
 
@@ -29,8 +29,8 @@ function CreateCabinForm({cabinToEdit}) {
 
     const {errors} = formState;
 
-    const {mutate, isLoading:isCreating} = useMutation({
-        mutationFn:createCabin,
+    const {mutate:createCabin, isLoading:isCreating} = useMutation({
+        mutationFn:createEditCabin,
         onSuccess:() => {
             toast.success('New cabin succesfully created');
             //This will cause data to be refetched after performing a mutation
@@ -44,12 +44,35 @@ function CreateCabinForm({cabinToEdit}) {
     })
 
 
+    const {mutate:editCabin, isLoading:isEditting} = useMutation({
+        mutationFn:({newCabinData, id}) => createEditCabin(newCabinData, id),
+        onSuccess:() => {
+            toast.success('New cabin succesfully created');
+            //This will cause data to be refetched after performing a mutation
+            queryClient.invalidateQueries({
+                queryKey:['cabin'],
+            })
+
+            reset()
+        },
+        onError:(err) => toast.error(err.message)
+    })
+
+    const isWorking = isCreating || isEditting
 
     const onSubmit = (data) => {
         console.log(data)
-        const image =  data.image[0];
 
-       mutate({...data,image: image})
+        const image = typeof data.image === 'string' ? data.image : data.image[0];
+
+
+        if(isEditSession) {
+            editCabin({newCabinData: {...data, image}, id: editId})
+        }else {
+            createCabin({...data,image: image})
+        }
+
+
     }
 
     const onError = (errors) => {
@@ -60,7 +83,7 @@ function CreateCabinForm({cabinToEdit}) {
     <Form onSubmit={handleSubmit(onSubmit, onError)}>
       <FormRow label='Cabin name' error={errors?.name?.message }>
 
-        <Input disabled={isCreating} type="text" id="name" {...register("name",{
+        <Input disabled={isWorking} type="text" id="name" {...register("name",{
             required:'This field is required'
         })} />
 
@@ -69,7 +92,7 @@ function CreateCabinForm({cabinToEdit}) {
 
       <FormRow label='Maximum Capacity' error={errors?.maxCapacity?.message }>
 
-        <Input disabled={isCreating} type="number" id="maxCapacity"  {...register("maxCapacity" ,{
+        <Input disabled={isWorking} type="number" id="maxCapacity"  {...register("maxCapacity" ,{
             required:'This field is required',
             min:{
                 value:1,
@@ -80,7 +103,7 @@ function CreateCabinForm({cabinToEdit}) {
 
       <FormRow label='Reqular Price' error={errors?.regularPrice?.message }>
 
-        <Input disabled={isCreating} type="number" id="regularPrice"  {...register("regularPrice" ,{
+        <Input disabled={isWorking} type="number" id="regularPrice"  {...register("regularPrice" ,{
             required:'This field is required',
             min:{
                 value:1,
@@ -91,7 +114,7 @@ function CreateCabinForm({cabinToEdit}) {
 
       <FormRow label='Discount' error={errors?.discount?.message }>
 
-        <Input disabled={isCreating} type="number" id="discount" defaultValue={0} {...register("discount" ,{
+        <Input disabled={isWorking} type="number" id="discount" defaultValue={0} {...register("discount" ,{
             required:'This field is required',
             validate: (value) => value <=getValues().regularPrice || 'Discount Should be less than regular price'
         })} />
@@ -116,7 +139,7 @@ function CreateCabinForm({cabinToEdit}) {
         <Button variation="secondary" type="reset">
           Cancel
         </Button>
-        <Button disabled={isCreating}>{isEditSession ? 'Edit Cabin' : 'Create a new cabin'}</Button>
+        <Button disabled={isWorking}>{isEditSession ? 'Edit Cabin' : 'Create a new cabin'}</Button>
       </FormRow>
     </Form>
   );
