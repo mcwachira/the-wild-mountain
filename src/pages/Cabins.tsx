@@ -3,7 +3,6 @@ import Row from "../ui/Row";
 import CabinTable from "../features/cabins/CabinTable.tsx";
 import {useState} from "react";
 import Button from "../ui/Button.tsx";
-import CreateCabinForm from "../features/cabins/CreateCabinForm.tsx";
 
 
 function Cabins() {
@@ -26,8 +25,6 @@ function Cabins() {
               <Button onClick={() =>setShowForm((show) => setShowForm(!show))}>
                   Add New Cabin
               </Button>
-
-              {showForm && <CreateCabinForm/>}
           </Row>
 
       </>
