@@ -1,14 +1,9 @@
-import styled from "styled-components";
-
 import Input from "../../ui/Input";
 import Form from "../../ui/Form.tsx";
 import Button from "../../ui/Button.tsx";
 import FileInput from "../../ui/FileInput.tsx";
 import Textarea from "../../ui/Textarea.tsx";
 import {useForm} from "react-hook-form";
-import {useMutation, useQueryClient} from "@tanstack/react-query";
-import {createEditCabin} from "../../services/apiCabins.ts";
-import toast from "react-hot-toast";
 import FormRow from "../../ui/FormRow.tsx";
 import {useEditCabin} from "./useEditCabin.ts";
 import {useCreateCabin} from "./useCreateCabin.ts";
