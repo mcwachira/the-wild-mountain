@@ -3,12 +3,13 @@ import Row from "../ui/Row";
 import CabinTable from "../features/cabins/CabinTable.tsx";
 import {useState} from "react";
 import Button from "../ui/Button.tsx";
+import CreateCabinForm from "../features/cabins/CreateCabinForm.tsx";
 
 
 function Cabins() {
 
-    let showForm: boolean, setShowForm: (value: (((prevState: boolean) => boolean) | boolean)) => void;
-    [showForm, setShowForm] = useState<boolean>(false);
+
+   const  [showForm, setShowForm] = useState<boolean>(false);
   return (
 
       <>
@@ -20,11 +21,12 @@ function Cabins() {
           </Row>
 
           <Row>
-              <CabinTable/>
-              
-              <Button onClick={() =>setShowForm((show) => setShowForm(!show))}>
-                  Add New Cabin
+              <CabinTable />
+
+              <Button onClick={() => setShowForm((show) => !show)}>
+                  Add new cabin
               </Button>
+              {showForm && <CreateCabinForm />}
           </Row>
 
       </>
