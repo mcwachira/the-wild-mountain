@@ -1,6 +1,4 @@
 import styled from "styled-components";
-import {useQuery} from "@tanstack/react-query";
-import {getCabins}from "../../services/apiCabins.ts";
 import Spinner from "../../ui/Spinner.tsx";
 import CabinRow from "./CabinRow.tsx";
 import {useCabins} from "./useCabin.ts";
@@ -31,10 +29,17 @@ const TableHeader = styled.header`
 `;
 
 
+interface UseCabins {
+    isLoading:boolean;
+    cabins?: any[];
+}
+
 const CabinTable = () => {
 
 
-    const {isLoading, cabins} =useCabins()
+
+    const {isLoading, cabins}:UseCabins =useCabins()
+    console.log(cabins)
 
 
     if(isLoading) return <Spinner/>
@@ -53,7 +58,7 @@ const CabinTable = () => {
             </TableHeader>
 
 
-            {cabins.map((cabin) => <CabinRow cabin={cabin} />)}
+            {cabins?.map((cabin) => <CabinRow cabin={cabin} />)}
         </Table>
     )
 }

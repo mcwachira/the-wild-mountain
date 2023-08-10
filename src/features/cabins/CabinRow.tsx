@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {formatCurrency} from "../../utils/helpers.js";
+import {formatCurrency} from "../../utils/helpers.ts";
 import Button from "../../ui/Button.tsx";
 
 import {useState} from "react";
