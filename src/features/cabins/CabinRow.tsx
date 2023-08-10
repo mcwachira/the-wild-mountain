@@ -64,7 +64,7 @@ const CabinRow = ({cabin}) => {
 
 
 
-const handleDupicate = () => {
+const handleDuplicate = () => {
         createCabin({
             name:`Copy of ${name}`,
              maxCapacity, regularPrice, discount, image
@@ -93,7 +93,7 @@ const handleDupicate = () => {
 
                 <div>
 
-                    <Button disabled={isCreating} onClick={() => handleDupicate()}>
+                    <Button disabled={isCreating} onClick={() => handleDuplicate()}>
                         <HiSquare2Stack/>
                     </Button>
                     <Button onClick={() => setShowForm(!showForm)}>

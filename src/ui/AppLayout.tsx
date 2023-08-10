@@ -1,4 +1,3 @@
-
 import {Outlet} from "react-router-dom";
 import SideBar from "./SideBar.tsx";
 import Header from "./Header.tsx";

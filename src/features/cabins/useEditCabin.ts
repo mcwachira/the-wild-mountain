@@ -11,8 +11,8 @@ export function useEditCabin(){
     const {mutate:editCabin, isLoading:isEditing} = useMutation({
         mutationFn:({newCabinData, id}) => createEditCabin(newCabinData, id),
         onSuccess:() => {
-            toast.success('New cabin succesfully created');
-            //This will cause data to be refetched after performing a mutation
+            toast.success('New cabin successfully created');
+            //This will cause data to be re-fetched after performing a mutation
             queryClient.invalidateQueries({
                 queryKey:['cabin'],
             })

@@ -10,7 +10,7 @@ export function  useDeleteCabin(){
         onSuccess: () => {
 
             toast.success('cabin successfully deleted');
-            //This will cause data to be refetched after performing a mutation
+            //This will cause data to be re-fetched after performing a mutation
             queryClient.invalidateQueries({
                 queryKey: ['cabin'],
             })
