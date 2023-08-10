@@ -39,7 +39,7 @@ const CabinTable = () => {
 
 
     const {isLoading, cabins}:UseCabins =useCabins()
-    console.log(cabins)
+    // console.log(cabins)
 
 
     if(isLoading) return <Spinner/>
