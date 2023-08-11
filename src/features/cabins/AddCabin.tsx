@@ -27,36 +27,28 @@ import CabinTable from "./CabinTable.tsx";
 
 const AddCabin = () => {
     return (
-<Modal>
-    <Modal.Open opens="cabin-form">
 
-        <Button>
-            Add a new Cabin
-        </Button>
+        <div>
+            <Modal>
+                <Modal.Open opens="cabin-form">
 
-    </Modal.Open>
+                    <Button>
+                        Add a new Cabin
+                    </Button>
 
-
-    <Modal.Window name='cabin-form'>
-        <CreateCabinForm/>
-    </Modal.Window>
+                </Modal.Open>
 
 
-        <Modal.Open opens="table">
-
-            <Button>
-               Show table
-            </Button>
-
-        </Modal.Open>
+                <Modal.Window name='cabin-form'>
+                    <CreateCabinForm/>
+                </Modal.Window>
 
 
-        <Modal.Window name='table'>
-            <CabinTable/>
-        </Modal.Window>
 
 
-</Modal>
+            </Modal>
+        </div>
+
     )
 }
 export default AddCabin
