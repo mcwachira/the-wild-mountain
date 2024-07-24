@@ -51,8 +51,8 @@ const CabinTable = () => {
 
             </Table.Header>
 
-
-            {cabins?.map((cabin) => <CabinRow key={cabin.id} cabin={cabin} />)}
+<Table.Body data={cabins} render={(cabin) =>  <CabinRow cabin={cabin} key={cabin.id} />}
+/>
         </Table>
     )
 }
