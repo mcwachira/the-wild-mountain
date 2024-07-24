@@ -3,9 +3,9 @@ import React, {useRef, useEffect} from 'react'
 
 interface  useOutsideClickProps  {
     listenCapturing:boolean,
-    handler:() => null
+    handler:() =>void,
 }
-export function useOutsideClick (handler, listenCapturing= true ) {
+export function useOutsideClick (handler, listenCapturing= true ):useOutsideClickProps {
 
     const ref = useRef()
 
@@ -13,7 +13,7 @@ export function useOutsideClick (handler, listenCapturing= true ) {
     useEffect(
         function () {
             function handleClick(e:React.MouseEvent<HTMLElement>) {
-                if (ref.current && !ref.current.contains(e.target)) {
+                if (ref.current && !ref.current?.contains(e.target)) {
                     handler();
                 }
             }

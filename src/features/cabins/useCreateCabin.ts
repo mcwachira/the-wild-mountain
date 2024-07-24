@@ -27,3 +27,5 @@ export function useCreateCabin() {
         isCreating, createCabin
     }
 }
+
+  // created_at: string | null     description: string | null     discount: number | null     id: number     image: string | null     maxCapacity: number | null     name: string | null     regularPrice: number | null

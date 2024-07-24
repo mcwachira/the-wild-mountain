@@ -12,7 +12,7 @@ const StyledModal = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: var(--color-grey-0);
-  border-radius: var(--border-radius-lg);
+  border-radius: var(--border-radius-lg); 
   box-shadow: var(--shadow-lg);
   padding: 3.2rem 4rem;
   transition: all 0.5s;
@@ -182,12 +182,17 @@ interface ContextTypes{
 
 }
 
+
+// Steps to create a compound component
+// 1. Create a context
 const ModalContext = createContext<ContextTypes>();
 
+//2. create the parent component (Modal)
 function Modal({children}:ModalProps) {
-    const  [openName, setOpenName] = useState<string>("");
+    const  [openName, setOpenName] = useState("");
 
 
+    //handler functions  set open name to an empty string
     const close = () => setOpenName("");
     const open = setOpenName;
 
@@ -202,6 +207,7 @@ function Modal({children}:ModalProps) {
 function Open({children, opens:opensWindowName}:OpenProps) {
     const { open } = useContext(ModalContext);
 
+    // clone element enables us to create a react element using another element as a starting point
     return cloneElement(children, { onClick: () => open(opensWindowName) });
 }
 
@@ -225,6 +231,7 @@ function Window({children, name}:WindowProps){
     );
 }
 
+//place  them as properties of the modal
 Modal.Open = Open;
 Modal.Window = Window;
 

@@ -18,7 +18,7 @@ const TableRow = styled.div`
   padding: 1.4rem 2.4rem;
 
   &:not(:last-child) {
-    border-bottom: 1px solid var(--color-grey-100);
+      border-bottom: 1px solid var(--color-grey-700);                                                                                                                                                                                                                                                                                   00);
   }
 `;
 
@@ -39,22 +39,32 @@ const Cabin = styled.div`
 `;
 
 const Price = styled.div`
-  font-family: "Sono";
+  font-family: "Sono",serif;
   font-weight: 600;
 `;
 
 const Discount = styled.div`
-  font-family: "Sono";
+  font-family: "Sono",serif;
   font-weight: 500;
   color: var(--color-green-700);
 `;
 
 
 
+interface CabinData{
+    cabin:{
+id:number,
+     name:string,
 
-const CabinRow = ({cabin}) => {
+    maxCapacity:number,
+    regularPrice:number,
+    discount:number,
+    image:string
+}
+}
+const CabinRow = ({cabin}: CabinData) => {
 
-
+//console.log(cabin)
     const {id:cabinId, name, maxCapacity, regularPrice, discount, image}= cabin
 
  const {isDeleting, deleteCabin} = useDeleteCabin()
@@ -96,15 +106,15 @@ const handleDuplicate = () => {
                     </Button>
 
                     <Modal>
-                        <Modal.Open>
-                            <Button opens='edit'>
+                        <Modal.Open opens='edit'>
+                            <Button >
                                 <HiPencil/>
                             </Button>
 
                         </Modal.Open>
-                        <Modal.Window>
+                        <Modal.Window name='edit'>
 
-                            <CreateCabinForm  cabinToEdit={cabin}/>
+                            <CreateCabinForm cabinToEdit={cabin} onCloseModal={undefined}/>
                         </Modal.Window>
                     </Modal>
 

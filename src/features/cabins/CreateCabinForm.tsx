@@ -7,14 +7,20 @@ import {useForm} from "react-hook-form";
 import FormRow from "../../ui/FormRow.tsx";
 import {useEditCabin} from "./useEditCabin.ts";
 import {useCreateCabin} from "./useCreateCabin.ts";
+import React from "react";
 
 
 interface CreateCabinFormProps {
-   onCloseModal:() => void
+   onCloseModal:() => void,
+    cabinToEdit:{
+       id:number,
+        editValues:React.ReactNode
+    }
 }
 
-function CreateCabinForm({cabinToEdit ={}, onCloseModal}:CreateCabinFormProps) {
+function CreateCabinForm({cabinToEdit={}, onCloseModal}:CreateCabinFormProps) {
 
+    console.log(cabinToEdit)
 
     const {        isCreating, createCabin} = useCreateCabin()
 
@@ -30,7 +36,7 @@ function CreateCabinForm({cabinToEdit ={}, onCloseModal}:CreateCabinFormProps) {
         defaultValues:isEditSession ? editValues :{}
     })
 
-    console.log(getValues().discount)
+    // console.log(getValues().discount)
 
     const {errors} = formState;
 
@@ -45,7 +51,7 @@ function CreateCabinForm({cabinToEdit ={}, onCloseModal}:CreateCabinFormProps) {
 
 
         if(isEditSession) {
-            editCabin({newCabinData: {...data, image}, id: editId},  {
+            editCabin({newCabinData: {...data, image}, id:editId},  {
                 onSuccess:(data) => {
                     reset()
                 }

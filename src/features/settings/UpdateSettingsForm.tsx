@@ -5,6 +5,7 @@ import {useSettings} from "./useSettings.ts";
 import Form from "../../ui/Form.tsx";
 import Spinner from "../../ui/Spinner.tsx";
 import {useUpdateSetting} from "./useUpdateSettings.ts";
+import Button from "../../ui/Button.tsx";
 
 
 function UpdateSettingsForm() {
@@ -52,6 +53,11 @@ const {isUpdating, updateSetting} = useUpdateSetting()
 
                id='breakfast-price' />
       </FormRow>
+        {/*<FormRow>*/}
+        {/*    /!* type is an HTML attribute! *!/*/}
+
+        {/*    <Button disabled={isUpdating}>{'Update Settings'}</Button>*/}
+        {/*</FormRow>*/}
     </Form>
   );
 }

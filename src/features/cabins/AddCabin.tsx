@@ -1,7 +1,7 @@
 import Button from "../../ui/Button.tsx";
 import CreateCabinForm from "./CreateCabinForm.tsx";
 import Modal from "../../ui/Modal.tsx";
-import CabinTable from "./CabinTable.tsx";
+// import CabinTable from "./CabinTable.tsx";
 
 
 // const AddCabin = () => {
@@ -30,6 +30,7 @@ const AddCabin = () => {
 
         <div>
             <Modal>
+
                 <Modal.Open opens="cabin-form">
 
                     <Button>
@@ -39,8 +40,9 @@ const AddCabin = () => {
                 </Modal.Open>
 
 
+                {/*//where we place the content of the modal*/}
                 <Modal.Window name='cabin-form'>
-                    <CreateCabinForm/>
+                    <CreateCabinForm />
                 </Modal.Window>
 
 

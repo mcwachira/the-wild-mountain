@@ -5,7 +5,7 @@ import {useCabins} from "./useCabin.ts";
 
 
 const Table = styled.div`
-  border: 1px solid var(--color-grey-200);
+  border: 1px solid var(--color-grey-500);
 
   font-size: 1.4rem;
   background-color: var(--color-grey-0);
@@ -20,7 +20,7 @@ const TableHeader = styled.header`
   align-items: center;
 
   background-color: var(--color-grey-50);
-  border-bottom: 1px solid var(--color-grey-100);
+  border-bottom: 1px solid var(--color-grey-700);
   text-transform: uppercase;
   letter-spacing: 0.4px;
   font-weight: 600;
@@ -39,7 +39,7 @@ const CabinTable = () => {
 
 
     const {isLoading, cabins}:UseCabins =useCabins()
-    // console.log(cabins)
+    console.log(cabins)
 
 
     if(isLoading) return <Spinner/>
@@ -58,7 +58,7 @@ const CabinTable = () => {
             </TableHeader>
 
 
-            {cabins?.map((cabin) => <CabinRow cabin={cabin} />)}
+            {cabins?.map((cabin) => <CabinRow key={cabin.id} cabin={cabin} />)}
         </Table>
     )
 }

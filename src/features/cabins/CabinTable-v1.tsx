@@ -33,9 +33,13 @@ const TableHeader = styled.header`
 const CabinTable = () => {
 
    const {isLoading, data:cabins, error} =  useQuery({
+       //query key is unique
         queryKey:['cabin'],
+
+       //query function for fetching returns a promise
         queryFn:getCabins
     })
+    // console.log('this is a cabin', data)
 
     if(isLoading) return <Spinner/>
 
