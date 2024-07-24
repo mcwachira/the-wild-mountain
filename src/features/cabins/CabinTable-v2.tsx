@@ -2,9 +2,16 @@ import styled from "styled-components";
 import Spinner from "../../ui/Spinner.tsx";
 import CabinRow from "./CabinRow.tsx";
 import {useCabins} from "./useCabin.ts";
-import Table from "../../ui/Table"
 
 
+const Table = styled.div`
+  border: 1px solid var(--color-grey-500);
+
+  font-size: 1.4rem;
+  background-color: var(--color-grey-0);
+  border-radius: 7px;
+  overflow: hidden;
+`;
 
 const TableHeader = styled.header`
   display: grid;
@@ -39,9 +46,8 @@ const CabinTable = () => {
 
     return (
 
-
-        <Table columns="0.6fr 1.8fr 2.2fr 1fr 1fr 1fr">
-            <Table.Header>
+        <Table role='table'>
+            <TableHeader role='row'>
                 <div></div>
                 <div>Cabin</div>
                 <div>Capacity</div>
@@ -49,7 +55,7 @@ const CabinTable = () => {
                 <div>Discount</div>
                 <div></div>
 
-            </Table.Header>
+            </TableHeader>
 
 
             {cabins?.map((cabin) => <CabinRow key={cabin.id} cabin={cabin} />)}

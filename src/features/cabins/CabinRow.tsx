@@ -9,18 +9,19 @@ import {HiPencil, HiTrash} from "react-icons/hi";
 import {useCreateCabin} from "./useCreateCabin.ts";
 import Modal from "../../ui/Modal.tsx";
 import ConfirmDelete from "../../ui/ConfirmDelete.tsx";
+import Table from "../../ui/Table.tsx";
 
-const TableRow = styled.div`
-  display: grid;
-  grid-template-columns: 0.6fr 1.8fr 2.2fr 1fr 1fr 1fr;
-  column-gap: 2.4rem;
-  align-items: center;
-  padding: 1.4rem 2.4rem;
-
-  &:not(:last-child) {
-      border-bottom: 1px solid var(--color-grey-700);                                                                                                                                                                                                                                                                                   00);
-  }
-`;
+// const TableRow = styled.div`
+//   display: grid;
+//   grid-template-columns: 0.6fr 1.8fr 2.2fr 1fr 1fr 1fr;
+//   column-gap: 2.4rem;
+//   align-items: center;
+//   padding: 1.4rem 2.4rem;
+//
+//   &:not(:last-child) {
+//       border-bottom: 1px solid var(--color-grey-700);                                                                                                                                                                                                                                                                                   00);
+//   }
+// `;
 
 const Img = styled.img`
   display: block;
@@ -82,7 +83,7 @@ const handleDuplicate = () => {
     return(
 
         <>
-            <TableRow role ='row'>
+            <Table.Row>
                 <Img src={image}/>
                 <Cabin>
                     {name}
@@ -119,13 +120,13 @@ const handleDuplicate = () => {
                     </Modal>
 
                     <Modal>
-                        <Modal.Open>
+                        <Modal.Open opens="delete">
                             <Button>
                                 <HiTrash/>
                             </Button>
 
                         </Modal.Open>
-                        <Modal.Window>
+                        <Modal.Window name="delete">
 
                             <ConfirmDelete resourceName='cabins' disabled={isDeleting}
                             onConfirm={() => deleteCabin(cabinId)}
@@ -135,7 +136,7 @@ const handleDuplicate = () => {
 
                 </div>
 
-            </TableRow>
+            </Table.Row>
 
 
         </>
