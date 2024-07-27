@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Logo from "./Logo.tsx";
 import MainNav from "./MainNav.tsx";
+import Uploader from "../data/Uploader.tsx";
 
 
 const StyledSideBar = styled.aside`
@@ -18,6 +19,7 @@ const SideBar = () => {
 
             <Logo/>
             <MainNav/>
+            <Uploader/>
         </StyledSideBar>
     )
 }
