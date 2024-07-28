@@ -1,9 +1,12 @@
 import { getToday } from "../utils/helpers.ts";
 import {supabase}from "./supabase";
 import {PAGE_SIZE} from "../utils/constants.ts";
+import {useQueryClient} from "@tanstack/react-query";
 
 
 export async function getBookings({filter, sortBy, page}){
+
+
   //         exact only helps us to get the number of results
 let query =  supabase.from("bookings")
       .select("id, created_at, startDate, endDate, numNights, numGuests, status, totalPrice, cabins(name) , guests(fullName, email)", {count:"exact"}
