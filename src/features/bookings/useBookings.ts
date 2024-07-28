@@ -16,11 +16,19 @@ export function useBookings(){
         //
 
 
+
+    //SORT
+
+    const sortByRaw = searchParams.get("sortBy") || "startDate-desc";
+    const [field, direction] = sortByRaw.split("-");
+    const sortBy = {field, direction}
+
+
     const {isLoading, data:bookings, error} =  useQuery({
         //query key should be unique
-        queryKey:['bookings', filter],
+        queryKey:['bookings', filter, sortBy],
         //function should return a promise
-        queryFn:() => getBookings({filter})
+        queryFn:() => getBookings({filter, sortBy})
     })
 
 return {
