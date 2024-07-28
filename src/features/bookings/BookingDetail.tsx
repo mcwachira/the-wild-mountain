@@ -9,6 +9,10 @@ import Button from "../../ui/Button.tsx";
 import ButtonText from "../../ui/ButtonText.tsx";
 
 import { useMoveBack } from "../../hooks/useMoveBack.ts";
+import {useParams} from "react-router-dom";
+import {useBooking} from "./useBooking.ts";
+import Spinner from "../../ui/Spinner.tsx";
+import Empty from "../../ui/Empty.tsx";
 
 const HeadingGroup = styled.div`
   display: flex;
@@ -17,8 +21,19 @@ const HeadingGroup = styled.div`
 `;
 
 function BookingDetail() {
-  const booking = {};
-  const status = "checked-in";
+
+  const {        isLoading,
+      booking,
+      error} = useBooking()
+
+    if(isLoading) return <Spinner/>
+    if(!booking) return <Empty resourceName="bookings"/>
+
+
+    const {status, id} = booking
+
+
+
 
   const moveBack = useMoveBack();
 
@@ -32,7 +47,7 @@ function BookingDetail() {
     <>
       <Row type="horizontal">
         <HeadingGroup>
-          <Heading as="h1">Booking #X</Heading>
+          <Heading as="h1">Booking #{id}</Heading>
           <Tag type={statusToTagName[status]}>{status.replace("-", " ")}</Tag>
         </HeadingGroup>
         <ButtonText onClick={moveBack}>&larr; Back</ButtonText>

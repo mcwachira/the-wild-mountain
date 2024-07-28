@@ -18,6 +18,7 @@ import Account from "./pages/Account.tsx";
 import GlobalStyles from "./styles/GlobalStyles.ts";
 import AppLayout from "./ui/AppLayout.tsx";
 import {Toaster} from "react-hot-toast";
+import Booking from "./pages/Booking.tsx";
 
 
 
@@ -48,6 +49,7 @@ function App() {
 
                     <Route path='dashboard' element={<Dashboard/>}/>
                     <Route path='bookings' element={<Bookings/>}/>
+                    <Route path='bookings/:bookingId' element={<Booking/>}/>
                     <Route path='cabins' element={<Cabins/>}/>
                     <Route path='users' element={<Users/>}/>
                     <Route path='settings' element={<Settings/>}/>
