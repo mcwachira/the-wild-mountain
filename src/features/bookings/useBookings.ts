@@ -24,16 +24,25 @@ export function useBookings(){
     const sortBy = {field, direction}
 
 
-    const {isLoading, data:bookings, error} =  useQuery({
+    //PAGINATION
+    const page = !searchParams.get('page') ? 1 : Number(searchParams.get('page'));
+
+    const {isLoading,
+
+        //data won't exist initially
+        data: { data: bookings, count }={} ,
+
+        error} =  useQuery({
         //query key should be unique
-        queryKey:['bookings', filter, sortBy],
+        queryKey:['bookings', filter, sortBy, page],
         //function should return a promise
-        queryFn:() => getBookings({filter, sortBy})
+        queryFn:() => getBookings({filter, sortBy, page})
     })
 
 return {
         isLoading,
     bookings,
+    count,
     error
 
 }}

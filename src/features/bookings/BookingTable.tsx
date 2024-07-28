@@ -4,10 +4,11 @@ import Menus from "../../ui/Menus.tsx";
 import Empty from "../../ui/Empty.tsx";
 import {useBookings} from "./useBookings.ts";
 import Spinner from "../../ui/Spinner.tsx";
+import Pagination from "../../ui/Pagination.tsx";
 
 function BookingTable() {
-  const {bookings, isLoading} =useBookings()
-  console.log(bookings)
+  const {bookings,  isLoading , count} =useBookings()
+  console.log(count)
 
   if(isLoading) return <Spinner/>
 
@@ -31,6 +32,10 @@ function BookingTable() {
                 <BookingRow key={booking.id} booking={booking} />
             )}
         />
+
+        <Table.Footer>
+          <Pagination  count ={count}/>
+        </Table.Footer>
       </Table>
     </Menus>
   );
