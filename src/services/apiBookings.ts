@@ -1,7 +1,6 @@
 import { getToday } from "../utils/helpers.ts";
 import {supabase}from "./supabase";
 import {PAGE_SIZE} from "../utils/constants.ts";
-import {useQueryClient} from "@tanstack/react-query";
 
 
 export async function getBookings({filter, sortBy, page}){
