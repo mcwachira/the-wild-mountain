@@ -45,6 +45,8 @@ const Filter = ({filterField, options}) => {
   const currentFilter= searchParams.get(filterField) || options.at(0).value
 function handleClick(value: string) {
 searchParams.set(filterField, value);
+//checks if page is last then resets the page
+if(searchParams.get("page")) searchParams.set("page", 1);
 setSearchParams(searchParams)
 
 }

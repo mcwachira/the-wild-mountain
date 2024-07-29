@@ -6,6 +6,7 @@ import {PAGE_SIZE} from "../utils/constants.ts";
 export async function getBookings({filter, sortBy, page}){
 
 
+
   //         exact only helps us to get the number of results
 let query =  supabase.from("bookings")
       .select("id, created_at, startDate, endDate, numNights, numGuests, status, totalPrice, cabins(name) , guests(fullName, email)", {count:"exact"}
@@ -121,7 +122,7 @@ export async function updateBooking(id, obj) {
     .single();
 
   if (error) {
-    console.error(error);
+    console.error(error.message);
     throw new Error("Booking could not be updated");
   }
   return data;
