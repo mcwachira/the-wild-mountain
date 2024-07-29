@@ -16,7 +16,7 @@ let query =  supabase.from("bookings")
   //FILTER
   if(filter)
     query = query[filter.method || "eq"](filter.field, filter.value)
-
+deleteBooking
 
   //SORT
   if(sortBy)
