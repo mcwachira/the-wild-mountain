@@ -20,6 +20,7 @@ import AppLayout from "./ui/AppLayout.tsx";
 import {Toaster} from "react-hot-toast";
 import Booking from "./pages/Booking.tsx";
 import Checkin from "./pages/Checkin.tsx";
+import ProtectedRoutes from "./ui/ProtectedRoutes.tsx";
 
 
 
@@ -43,7 +44,7 @@ function App() {
             <Routes>
 
 
-                <Route element={<AppLayout/>}>
+                <Route element={<ProtectedRoutes><AppLayout/></ProtectedRoutes>}>
 
 
                     <Route index element={<Navigate replace to='dashboard'/>}/>
