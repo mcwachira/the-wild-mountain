@@ -11,7 +11,7 @@ export const useLogin = () => {
 
             //store user data in cache
             queryClient.setQueryData(['user'], user.user);
-                  navigate('/dashboard', { replace: true });
+                   navigate('/dashboard', { replace: true });
         },
         onError:(err) => {
             console.log("Error:", err);

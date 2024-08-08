@@ -8,7 +8,7 @@ const FullPage = styled.div`
     height: 100vh;
         background-color: var(--color-grey-50);
         display: flex;
-        align-items: center;
+        align-items: center;  
         justify-content: center;
     `
 const ProtectedRoutes = ({children}) => {
@@ -22,16 +22,21 @@ const ProtectedRoutes = ({children}) => {
 
     const {user, isLoading, isAuthenticated} = useUser()
     console.log(user)
-    //2. While Loading show spinner
 
-    if(isLoading) return (<FullPage><Spinner/> </FullPage>)
 
-    //3. If there is no Authenticated User , redirect lo /login
+    //2. If there is no Authenticated User , redirect lo /login
 
     useEffect(() => {
         if(!isAuthenticated && !isLoading) navigate('/login')
 
     }, [isLoading, isAuthenticated, navigate]);
+
+
+    //3. While Loading show spinner
+
+    if(isLoading) return (<FullPage><Spinner/> </FullPage>)
+
+
     //4.if there is a user , render the app
 
     if (isAuthenticated) return children
