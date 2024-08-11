@@ -17,13 +17,13 @@ function HeaderMenu() {
     return (
   <StyledHeaderMenu>
       <li>
-          <ButtonIcon>
+          <ButtonIcon  onClick={() => navigate('/account')}>
               <HiOutlineUser/>
 
           </ButtonIcon>
       </li>
       <li></li>
-      <li onClick={() => navigate('/user')}>
+      <li>
 
           <Logout/>
       </li>
