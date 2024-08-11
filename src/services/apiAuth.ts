@@ -1,6 +1,28 @@
 import {supabase} from "./supabase";
+interface FormProps {
+ email:string,
+    password:string,
+    fullName:string,
+}
 
-export const login = async ({email, password}) => {
+
+export const signup = async ({fullName,email, password}:FormProps) => {
+
+    const {data, error} = await supabase.auth.signUp({
+        email, password,
+        //optional just to add some data needed by the user
+        options:{
+            data:{
+                fullName,
+                avatar:""
+            }
+        }
+    })
+
+    if(error) throw new Error(error.message);
+    return data
+}
+export const login = async ({email, password}:FormProps) => {
 
  const {data, error} = await supabase.auth.signInWithPassword({
         email,

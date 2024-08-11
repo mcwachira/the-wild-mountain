@@ -1,0 +1,45 @@
+for each  line in Bill_Items
+{
+	vat = 0.02;
+	vat1 = 0.16;
+	income = 0.05;
+	if(line.Expense_Category != null)
+	{
+		response = Expense_Category[ID != null && ID == line.Expense_Category];
+		if(line.Withholding_Tax.contains("VAT") == true && line.Withholding_Tax.contains("Income") == true && response.Withholding_Tax.contains("VAT") == true && response.Withholding_Tax.contains("Income") == true)
+		{
+			if(line.Amount != null)
+			{
+				vat_tax1 = line.Amount * vat1;
+				vat_tax = vat_tax1 * vat;
+				income_tax = line.Amount * income;
+				total_tax = vat_tax + income_tax;
+				new_total_tax = vat_tax1 - total_tax;
+				line.Amount=line.Amount + new_total_tax;
+			}
+		}
+		else if(line.Withholding_Tax.contains("VAT") == true && line.Withholding_Tax.contains("Income") == false && response.Withholding_Tax.contains("VAT") == true && response.Withholding_Tax.contains("Income") == false)
+		{
+			if(line.Amount != null)
+			{
+				info "yes";
+				// 				vat_tax1 = line.Amount * vat1;
+				// 				vat_tax = vat_tax1 * vat;
+				// 				income_tax = 0;
+				// 				total_tax = vat_tax + income_tax;
+				// 				new_total_tax = vat_tax1 - total_tax;
+				// 				line.Amount = line.Amount + new_total_tax;
+			}
+		}
+		else if(line.Withholding_Tax.contains("VAT") == false && line.Withholding_Tax.contains("Income") == true && response.Withholding_Tax.contains("VAT") == false && response.Withholding_Tax.contains("Income") == true)
+		{
+			if(line.Amount != null)
+			{
+				// 				vat_tax = 0;
+				// 				income_tax = line.Amount * income;
+				// 				total_tax = vat_tax + income_tax;
+				// 				line.Amount = line.Amount - total_tax;
+			}
+		}
+	}
+}
