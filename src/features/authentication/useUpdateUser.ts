@@ -13,11 +13,11 @@ export function useUpdateUser(){
         mutationFn:updateCurrentUser,
         onSuccess:({user}) => {
             toast.success('User  Data Successfully updated');
-            // queryClient.setQueryData('user', user)
+            queryClient.setQueryData(['user'], user)
             //This will cause data to be re-fetched after performing a mutation
-            queryClient.invalidateQueries({
-                queryKey:['user'],
-            })
+            // queryClient.invalidateQueries({
+            //     queryKey:['user'],
+            // })
 
 
         },
