@@ -6,6 +6,7 @@ import Stats from "./Stats.tsx";
 import {useCabins} from "../cabins/useCabin.ts";
 import SalesChart from "./SalesChart.tsx";
 import DurationChart from "./DurationChart.tsx";
+import TodayActivity from "../check-in-out/TodayActivity.tsx";
 
 const StyledDashboardLayout = styled.div`
   display: grid;
@@ -18,7 +19,7 @@ const StyledDashboardLayout = styled.div`
 function DashboardLayout() {
 
     const {bookings , isLoading:isLoadingBookings} = useRecentBookings();
-    const {stays, isLoading:isLoadingStays, confirmedStays, numDays} = useRecentStays()
+    const {isLoading:isLoadingStays, confirmedStays, numDays} = useRecentStays()
 
     const {cabins, isLoading:isCabinsLoadings} = useCabins()
     if(isLoadingBookings || isLoadingStays || isCabinsLoadings) return <Spinner/>
@@ -29,9 +30,7 @@ function DashboardLayout() {
   <StyledDashboardLayout>
       <Stats bookings={bookings} confirmedStays={confirmedStays} numDays={numDays} cabinCount={cabins.length}/>
 
-      <div>
-          Today's Activities
-      </div>
+    <TodayActivity/>
    <DurationChart confirmedStays={confirmedStays}/>
 
 
