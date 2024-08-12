@@ -9,6 +9,8 @@ import {
 } from '@tanstack/react-query'
 import {ReactQueryDevtools} from "@tanstack/react-query-devtools";
 import {DarkModeProvider} from "./context/DarkModeContext.tsx";
+import {ErrorBoundary} from "react-error-boundary";
+import ErrorFallback from "./ui/ErrorFallback.tsx";
 
 
 
@@ -27,6 +29,7 @@ const queryClient = new QueryClient({
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
+      <ErrorBoundary fallbackComponent={ErrorFallback} onReset={() => window.location.replace("/")}>
 <DarkModeProvider>
       <QueryClientProvider client={ queryClient}>
           <ReactQueryDevtools initialIsOpen={false}/>
@@ -35,6 +38,6 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           </Router>
       </QueryClientProvider>
 </DarkModeProvider>
-
+      </ErrorBoundary>
   </React.StrictMode>,
 )
