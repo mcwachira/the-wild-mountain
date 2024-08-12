@@ -1,11 +1,3 @@
-import styled from "styled-components";
-// import {
-//     useQuery,
-//     useMutation,
-//     useQueryClient,
-//     QueryClient,
-//     QueryClientProvider,
-// } from '@tanstack/react-query'
 import {Navigate, Route, Routes} from "react-router-dom";
 import Dashboard from './pages/Dashboard'
 import Bookings from './pages/Bookings'
@@ -31,10 +23,6 @@ function App() {
 
 
 
-    const StyledApp =   styled.main`
-
-      padding: 20px;
-    `
 
     return (
 
