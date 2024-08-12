@@ -4,6 +4,8 @@ import Spinner from "../../ui/Spinner.tsx";
 import useRecentStays from "./useRecentStays.ts";
 import Stats from "./Stats.tsx";
 import {useCabins} from "../cabins/useCabin.ts";
+import SalesChart from "./SalesChart.tsx";
+import DurationChart from "./DurationChart.tsx";
 
 const StyledDashboardLayout = styled.div`
   display: grid;
@@ -26,17 +28,14 @@ function DashboardLayout() {
     return (
   <StyledDashboardLayout>
       <Stats bookings={bookings} confirmedStays={confirmedStays} numDays={numDays} cabinCount={cabins.length}/>
-      <div>Statistics</div>
+
       <div>
           Today's Activities
       </div>
-      <div>
-          Chart Stay Duration
-      </div>
+   <DurationChart confirmedStays={confirmedStays}/>
 
-      <div>
-          Chart Sales
-      </div>
+
+      <SalesChart bookings={bookings} numDays={numDays} />
   </StyledDashboardLayout>
     );
 }
