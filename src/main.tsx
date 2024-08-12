@@ -29,7 +29,10 @@ const queryClient = new QueryClient({
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-      <ErrorBoundary fallbackComponent={ErrorFallback} onReset={() => window.location.replace("/")}>
+      <ErrorBoundary
+          FallbackComponent={ErrorFallback}
+          onReset={() => window.location.replace("/")}
+      >
 <DarkModeProvider>
       <QueryClientProvider client={ queryClient}>
           <ReactQueryDevtools initialIsOpen={false}/>
